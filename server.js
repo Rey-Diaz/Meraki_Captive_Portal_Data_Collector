@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 /* serves main page */
 app.get("/", function(req, res) {
-   res.sendfile('public/index.html')
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get("/fail", function(req, res) {
@@ -51,7 +51,6 @@ app.post('/form', function(req, res) {
         return res.redirect('/success');
     });
 
-    // Optionally, to ensure the header is only written once, you might use a flag or check file size
     fs.stat(logFilePath, function(err, stats) {
         if (err) {
             // Handle the error, file might not exist which is ok since appendFile will create it
